@@ -40,7 +40,7 @@
 # Create the variable
 # << y >> : a vector of length 100 which has the even numbers from 2 to 200.
 # For clarity put your code here, directly below the 
-
+y = seq(2, 200, by=2)
 
 # Create the variable
 # << z >> : a vector of length 20 with character entries, "hw1", "hw2", ..., "hw20"
@@ -48,16 +48,16 @@
 # Create the variable
 # << m >> : a vector of length 100 with entries from a standard normal distribution
 set.seed(42)
-
+m=rnorm(100,0,1)
 # Create the variable
 # << mean.m >> : a scalar, the mean of the numbers in << m >>
-
+mean.m=mean(m)
 # Creat the variable
 # << sd.m >> : a scalar, the standard deviation of the numbers in << m >>
-
+sd.m=sd(m)
 # Create the variable
 # << max.m >> : a scalar, the maximum of the numbers in << m >>
-
+max.m = max(m)
 
 ##################################################################################
 ### Second part, data frames
@@ -78,25 +78,31 @@ load("family.rda")
 
 # Create a new data frame 
 # << family.men >> : a data frame that is a subset of family, with only the men
-
+fgender = family$gender
+subset(family, fgender=="m")
 
 # Create a new data frame 
 # << family.young >> : a data frame, subset of family, with only people *under* 40
+subset(family, family$age < 40)
 
-
-# Create a new data frame 
+# Create a new data frame
 # << family.30y68i >> : a data frame, subset of family, with only people *over* 30, *shorter* than 68 in
 
+subset(family, family$age > 30 & family$height < 68 )
 
 # Formula for BMI : BMI = (weight in lbs) / (height in in)^2 * 703
 # Note: the dataframe has weight in lbs and height in in as required.
 # Create a new variable 
 # << bmi >> : a vector with the BMI of each family member 
 
+fheight=family[,4]
+fweight=family[,5]
+bmi = fweight / fheight^2 *703
 
 # Create a new data frame
 # << family2 >> : family with an added column of BMI, with column name bmi
-
-
+data = data.frame(family)
+data$bmi = bmi
+family2 = data
 
 ##################################################################################
